@@ -1,80 +1,80 @@
 # 4vGYM API
 
-API para la gestión de fitness y actividades en 4vGYM.
+API for fitness and activity management in 4vGYM.
 
-## Índice de Contenidos
-- [Instalación](#instalación)
-- [Puntos de Acceso en la API](#puntos-de-acceso-en-la-api)
-- [Uso](#uso)
-- [Contribuir](#contribuir)
-- [Licencia](#licencia)
+## Table of Contents
+- [Installation](#installation)
+- [API Endpoints](#api-endpoints)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Instalación
+## Installation
 
-Sigue estos pasos para configurar el proyecto localmente:
+Follow these steps to set up the project locally:
 
 ```bash
-# Clona el repositorio
+# Clone the repository
 git clone https://github.com/xxSTUX/4vGYM-API.git
 
-# Navega al directorio del proyecto
+# Navigate to the project directory
 cd 4vGYM-API
 
-# Instala las dependencias
+# Install dependencies
 composer install
 
-# Configura la conexión a la base de datos
-# Reemplaza db_user, db_password y db_name con tus credenciales de base de datos
+# Configure the database connection
+# Replace db_user, db_password, and db_name with your database credentials
 DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
 
-# Crea la base de datos y el esquema
+# Create the database and schema
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
 
-# Inicia el servidor de desarrollo de Symfony
+# Start the Symfony development server
 symfony server:start
 ```
-Asegúrate de reemplazar db_user, db_password y db_name con tus credenciales reales de base de datos.
+Make sure to replace db_user, db_password, and db_name with your actual database credentials.
 
-## Puntos de Acceso en la API
+## API Endpoints
 
 ### `/activity-types`
-- GET: Obtén la lista de tipos de actividad. Cada tipo de actividad tiene un ID, nombre y el número de monitores requeridos para realizarla.
+- GET: Retrieve the list of activity types. Each type has an ID, name, and the number of monitors required for it.
 
 ### `/monitors`
-- GET: Obtén la lista de monitores con su ID, Nombre, Email, Teléfono y Foto.
-- POST: Crea nuevos monitores y devuelve el JSON con información sobre el nuevo monitor.
-- PUT: Edita monitores existentes.
-- DELETE: Elimina monitores.
+- GET: Retrieve the list of monitors with their ID, Name, Email, Phone, and Photo.
+- POST: Create new monitors and return the JSON with information about the new monitor.
+- PUT: Edit existing monitors.
+- DELETE: Delete monitors.
 
 ### `/activities`
-- GET: Obtén la lista de actividades con detalles sobre tipos, monitores incluidos y fecha. Puedes buscar por fecha usando un parámetro con el formato dd-MM-yyyy.
-- POST: Crea nuevas actividades y devuelve información sobre la nueva actividad. La validación asegura que la nueva actividad tenga los monitores requeridos basados en el tipo de actividad. La fecha y duración no son campos de libre formato; solo se permiten clases de 90 minutos que comiencen a las 09:00, 13:30 y 17:30.
-- PUT: Edita actividades existentes.
-- DELETE: Elimina actividades.
+- GET: Retrieve the list of activities with details on types, included monitors, and date. You can search by date using a parameter in the format dd-MM-yyyy.
+- POST: Create new activities and return information about the new activity. Validation ensures that the new activity has the required monitors based on the activity type. The date and duration are not free-form fields; only 90-minute classes starting at 09:00, 13:30, and 17:30 are allowed.
+- PUT: Edit existing activities.
+- DELETE: Delete activities.
 
-Todos los puntos de acceso de la API incluyen validación para solicitudes POST.
+All API endpoints include validation for POST requests.
 
-## Uso
+## Usage
 
-Así es como puedes usar la API 4vGYM para gestionar actividades y monitores:
+Here's how you can use the 4vGYM API to manage activities and monitors:
 
-- Utiliza el punto de acceso `/activity-types` para obtener una lista de tipos de actividad disponibles.
-- Utiliza el punto de acceso `/monitors` para ver, crear, editar o eliminar monitores.
-- Utiliza el punto de acceso `/activities` para gestionar actividades. Puedes crear, editar, eliminar y ver actividades.
+- Use the `/activity-types` endpoint to get a list of available activity types.
+- Use the `/monitors` endpoint to view, create, edit, or delete monitors.
+- Use the `/activities` endpoint to manage activities. You can create, edit, delete, and view activities.
 
-## Contribuir
+## Contributing
 
-¡Las contribuciones son bienvenidas! Si deseas contribuir al proyecto, por favor sigue estos pasos:
+Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
 
-1. Haz un fork del repositorio.
-2. Crea una nueva rama para tu característica o corrección de errores.
-3. Realiza tus cambios y haz el commit de los mismos.
-4. Empuja tu rama al repositorio bifurcado.
-5. Crea una solicitud de extracción al repositorio principal.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Create a pull request to the main repository.
 
-Tu solicitud de extracción será revisada y, una vez aprobada, se fusionará con la rama principal.
+Your pull request will be reviewed, and once approved, it will be merged into the main branch.
 
-## Licencia
+## License
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+This project is licensed under the MIT License. See the LICENSE file for details.
